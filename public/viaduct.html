@@ -12,6 +12,7 @@
       try {
         var params = JSON.parse(e.data);
         request(params.options, function() {
+          arguments[1]._viaductHeaders = arguments[1].getAllResponseHeaders();
           e.source.postMessage('viaduct-callback-' + params.id + ' ' + JSON.stringify(Array.prototype.slice.call(arguments)), '*');
         });
       } catch (ex) {
